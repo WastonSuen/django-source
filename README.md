@@ -1,2 +1,2 @@
 # django-source
-Read the source code of Django
+Notes of the Django-source-code
