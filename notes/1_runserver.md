@@ -1,5 +1,5 @@
 ## python manage.py runserver
-**执行步骤**
+**Django项目启动步骤**
 ><1> 由环境变量 DJANGO_SETTINGS_MODULE 设置settings文件位置, 并且执行 execute_from_command_line(sys.argv)
 ```
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_source.settings")
@@ -130,4 +130,15 @@ def serve_forever(self, poll_interval=0.5):
     finally:
         self.__shutdown_request = False
         self.__is_shut_down.set()
+```
+**维护一个 WSGIHander**
+```
+def get_wsgi_application():
+    """
+    The public interface to Django's WSGI support. Return a WSGI callable.
+    Avoids making django.core.handlers.WSGIHandler a public API, in case the
+    internal WSGI implementation changes or moves in the future.
+    """
+    django.setup(set_prefix=False)
+    return WSGIHandler()
 ```
