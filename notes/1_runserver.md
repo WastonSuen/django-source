@@ -139,7 +139,7 @@ def serve_forever(self, poll_interval=0.5):
         self.__is_shut_down.set()
 ```
 
-### 2.使用 uwsgi --ini uwsgi.ini 启动
+### 2.使用 uwsgi --ini deploy_conf/uwsgi.ini 启动
 > uwsgi.ini
 
 ```
