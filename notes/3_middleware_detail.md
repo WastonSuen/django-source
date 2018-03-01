@@ -121,3 +121,5 @@ self._middleware_chain = handler
 >3. 当 view 视图函数返回后，依次处理 ```_view_middleware, (_template_response_middleware,) _exception_middleware```, 返回 HttpResponse 对象，
 >4. 中间件栈开始出栈操作, 按 MIDDLEWARE 从下往上执行 process_response, 并将本 middleware 返回值交给上一个 middleware 处理，直到所有中间件处理完成
 >5. 此时交由 WSGIHander 处理 HEADER, COOKIES 等，再调用 start_response 并 return response 完成响应
+
+**在django1.6版本中，process_request 的处理与 process_view 等方法的处理是一样的，即通过列表来实现，然后在 get_response 里通过遍历列表来依次执行。高版本的处理是通过递归来处理，保证了 process_request 和 process_response 的整体性，且减少了生成列表占用的额外内存消耗**
